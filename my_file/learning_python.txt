@@ -1,0 +1,4 @@
+In Python you can make module
+In Python you can make class
+In Python you can use file
+In Python you can use for and while
