@@ -112,7 +112,7 @@ class Privileges():
         print('Admin can do following things ; ' )
         num = 1
         for i in self.privileges:
-            print('\t' +str(num) +  ' ' + iv
+            print('\t' + str(num) +  ' ' + i
             num += 1
 my_admin = Admin('xiao','zhijian',23)
 my_admin.privilege.show_privileges()
