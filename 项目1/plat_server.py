@@ -1,7 +1,10 @@
 # coding:utf8
 
 import requests
+import datetime
 
+#a = datetime.datetime.fromtimestamp(1503716400).strftime("%Y-%m-%d %H:%M:%S")
+#print(a)
 #获得工单里面的开服信息
 url = 'http://testqxm.cqms.nw175.com:10049/serverOp/getOrderlist'
 file_location = 'plat.list'
@@ -58,6 +61,9 @@ except FileNotFoundError:
         for list in plist4:
             yaodou.append(list)
 ### 过滤判断区号是否存在，属于哪个区服，填入对应的文件中
+sname = []
+for name in plat:
+    sname.append(name['sname'])
 for i in plat:
     if i['pname'] == 'yy':
         exist1 =  '1 ' +  i['sname'] + '\n'
@@ -65,7 +71,12 @@ for i in plat:
             print(' districk id exist')
         else:
             with open('plat_svr_list','a+') as plist1:
-                plist1.write('1 ' + i['sname'] + '\n')
+                for x in sname:
+                    if x[2] == 's' or x[2] == 't':
+                        new_name = x[0] + x[2:]
+                        plist1.write('1 ' + new_name + '\n')
+                    else:
+                        plist1.write('1 ' + i['sname'] + '\n')
     elif i['pname'] == 'swjoy' or i['pname'] == 'swjoys':
             exist2 = '2 ' + i['sname'] + '\n'
             if exist2 in swjoy:
